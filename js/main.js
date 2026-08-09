@@ -45,6 +45,22 @@
     });
   }
 
+  // --- HERO ENTRANCE ANIMATION ---
+  var hero = document.getElementById('hero');
+  if (hero) {
+    if (prefersReducedMotion) {
+      hero.classList.add('hero--loaded');
+      hero.querySelectorAll('.hero-entrance').forEach(function (el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    } else {
+      requestAnimationFrame(function () {
+        hero.classList.add('hero--loaded');
+      });
+    }
+  }
+
   // --- SMOOTH SCROLL ---
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {

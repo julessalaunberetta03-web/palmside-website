@@ -99,8 +99,12 @@ input, textarea, select { font: inherit; color: inherit; }
 .btn--primary:hover {
   background: linear-gradient(135deg, #2FC08A, #3FD39C);
   color: #0B120E;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.04);
   box-shadow: 0 6px 28px rgba(47, 192, 138, 0.35);
+}
+.btn--primary:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.1s;
 }
 .btn--primary:focus-visible {
   outline: 2px solid var(--green-light);
@@ -268,18 +272,49 @@ input, textarea, select { font: inherit; color: inherit; }
   padding: calc(var(--nav-height) + 60px) 0 80px;
   overflow: hidden;
 }
+
+/* Staggered entrance animation on page load */
+.hero .hero-entrance {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.hero.hero--loaded .hero-entrance {
+  animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero.hero--loaded .hero-entrance:nth-child(1) { animation-delay: 0.1s; }
+.hero.hero--loaded .hero-entrance:nth-child(2) { animation-delay: 0.25s; }
+.hero.hero--loaded .hero-entrance:nth-child(3) { animation-delay: 0.4s; }
+.hero.hero--loaded .hero-entrance:nth-child(4) { animation-delay: 0.55s; }
+.hero.hero--loaded .hero-entrance:nth-child(5) { animation-delay: 0.65s; }
+.hero.hero--loaded .hero-entrance:nth-child(6) { animation-delay: 0.8s; }
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero__title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(44px, 7vw, 96px);
   line-height: 1.05;
   text-transform: uppercase;
-  color: var(--cream);
   margin-bottom: 28px;
+  background: linear-gradient(to bottom, var(--cream), var(--cream), rgba(245, 239, 228, 0.55));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
 }
 .hero__title em {
   font-style: italic;
-  color: var(--green);
+  -webkit-text-fill-color: var(--green);
 }
 .hero__sub {
   max-width: 600px;
@@ -940,10 +975,12 @@ input, textarea, select { font: inherit; color: inherit; }
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
-  .reveal {
+  .reveal,
+  .hero-entrance {
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
   .frond-line {
     stroke-dasharray: none;
