@@ -1,7 +1,3 @@
-/* ========================================
-   PALMSIDE AGENCY — MAIN.JS
-   ======================================== */
-
 (function () {
   'use strict';
 
@@ -9,10 +5,9 @@
 
   // --- NAV SCROLL ---
   var nav = document.getElementById('nav');
-  var scrollThreshold = 40;
 
   function updateNav() {
-    if (window.scrollY > scrollThreshold) {
+    if (window.scrollY > 40) {
       nav.classList.add('nav--scrolled');
     } else {
       nav.classList.remove('nav--scrolled');
@@ -62,6 +57,7 @@
   // --- REVEAL ON SCROLL ---
   if (!prefersReducedMotion) {
     var reveals = document.querySelectorAll('.reveal');
+
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -69,9 +65,21 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    reveals.forEach(function (el) { revealObserver.observe(el); });
+    reveals.forEach(function (el, i) {
+      var parent = el.parentElement;
+      if (parent && (
+        parent.classList.contains('bento') ||
+        parent.classList.contains('pricing__grid') ||
+        parent.classList.contains('stats__grid')
+      )) {
+        var siblings = Array.from(parent.children);
+        var idx = siblings.indexOf(el);
+        el.style.transitionDelay = (idx * 0.1) + 's';
+      }
+      revealObserver.observe(el);
+    });
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) {
       el.classList.add('reveal--visible');
@@ -79,7 +87,7 @@
   }
 
   // --- COUNTER ANIMATION ---
-  var statNumbers = document.querySelectorAll('.stat__number[data-target]');
+  var statNumbers = document.querySelectorAll('.stats__number[data-target]');
 
   function animateCounter(el) {
     var target = parseInt(el.getAttribute('data-target'), 10);
@@ -90,7 +98,7 @@
       return;
     }
 
-    var duration = 1800;
+    var duration = 2000;
     var start = null;
 
     function step(timestamp) {
@@ -129,11 +137,15 @@
         if (entry.isIntersecting) {
           var id = entry.target.getAttribute('id');
           navLinks.forEach(function (link) {
-            link.style.color = link.getAttribute('href') === '#' + id ? 'var(--cream)' : '';
+            if (link.getAttribute('href') === '#' + id) {
+              link.style.color = 'var(--text)';
+            } else {
+              link.style.color = '';
+            }
           });
         }
       });
-    }, { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' });
+    }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
 
     sections.forEach(function (section) { sectionObserver.observe(section); });
   }
