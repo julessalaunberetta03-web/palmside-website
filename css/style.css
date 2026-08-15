@@ -15,7 +15,7 @@
   --border-hover: rgba(168, 248, 95, 0.4);
   --radius: 24px;
   --radius-pill: 999px;
-  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-display: 'Archivo Narrow', 'Archivo', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --container: 1200px;
   --gutter: 24px;
@@ -36,6 +36,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  position: relative;
+}
+/* Ambient lime glows — soft, diffuse, dispersed. Sit behind everything.
+   Excluded on sections that carry their own bg image (.hero, .pricing) —
+   those sit on top opaque enough to hide the glow. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 720px 520px at 12% 18%, rgba(168, 248, 95, 0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 620px 560px at 88% 42%, rgba(151, 251, 107, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 820px 640px at 40% 88%, rgba(188, 250, 87, 0.06) 0%, transparent 65%);
+  filter: blur(8px);
 }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; transition: color 0.2s; }
@@ -87,9 +103,12 @@ input, textarea, select { font: inherit; color: inherit; }
   cursor: pointer;
   border: none;
 }
+/* Lime buttons: never bold — medium weight only. Bold is reserved for headlines on dark. */
 .btn--primary {
   background: var(--accent-gradient);
   color: #0A0A0A;
+  font-weight: 500;
+  letter-spacing: 0.2px;
   box-shadow: 0 4px 24px rgba(168, 248, 95, 0.2);
 }
 .btn--primary:hover {
@@ -223,6 +242,11 @@ input, textarea, select { font: inherit; color: inherit; }
   display: flex;
   align-items: center;
   padding: calc(var(--nav-height) + 80px) 0 100px;
+  background:
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.7) 55%, rgba(10, 10, 10, 0.95) 100%),
+    url('../assets/hero-cubes.jpg') center/cover no-repeat,
+    #0A0A0A;
+  isolation: isolate;
 }
 .hero__title {
   position: relative;
@@ -402,10 +426,18 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* ========================================
-   5. TARIFS
+   5. PRICING
    ======================================== */
 .pricing {
   padding: var(--section-gap) 0;
+  position: relative;
+  background:
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0.5) 45%, rgba(10, 10, 10, 0.92) 100%),
+    url('../assets/pricing-glow.jpg') center/cover no-repeat,
+    radial-gradient(ellipse at 25% 25%, rgba(168, 248, 95, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(151, 251, 107, 0.11) 0%, transparent 55%),
+    #0A0A0A;
+  isolation: isolate;
 }
 .pricing__grid {
   display: grid;
@@ -443,7 +475,8 @@ input, textarea, select { font: inherit; color: inherit; }
   background: var(--accent-gradient);
   color: #0A0A0A;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.3px;
   padding: 6px 20px;
   border-radius: var(--radius-pill);
   white-space: nowrap;
@@ -503,7 +536,92 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* ========================================
-   6. COMMENT ÇA MARCHE
+   6. OUR WORK
+   ======================================== */
+.work {
+  padding: var(--section-gap) 0;
+}
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 340px;
+  gap: 20px;
+}
+.work__card {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  transition: transform 0.4s ease, border-color 0.3s;
+  isolation: isolate;
+}
+.work__card--wide {
+  grid-column: span 2;
+}
+.work__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+.work__image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(168, 248, 95, 0.04);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  z-index: 0;
+}
+/* Big initial as placeholder while the client image hasn't been uploaded. */
+.work__card::before {
+  content: attr(data-initial);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(168, 248, 95, 0.10);
+  z-index: 0;
+  pointer-events: none;
+}
+.work__card:hover .work__image {
+  transform: scale(1.04);
+}
+.work__meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 32px;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.65) 55%, transparent 100%);
+  z-index: 2;
+}
+.work__sector {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.work__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* ========================================
+   7. HOW IT WORKS
    ======================================== */
 .process {
   padding: var(--section-gap) 0;
@@ -1021,6 +1139,13 @@ input, textarea, select { font: inherit; color: inherit; }
   .step {
     gap: 32px;
   }
+  .work__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 300px;
+  }
+  .work__card--wide {
+    grid-column: span 2;
+  }
   .footer__top {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -1052,6 +1177,16 @@ input, textarea, select { font: inherit; color: inherit; }
   .bento__card--wide {
     grid-column: span 1;
   }
+
+  .work__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 260px;
+  }
+  .work__card--wide {
+    grid-column: span 1;
+  }
+  .work__card::before { font-size: 8rem; }
+  .work__name { font-size: 22px; }
 
   .pricing__grid {
     grid-template-columns: 1fr;
