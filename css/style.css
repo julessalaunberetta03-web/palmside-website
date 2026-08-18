@@ -249,8 +249,8 @@ input, textarea, select { font: inherit; color: inherit; }
   align-items: center;
   padding: calc(var(--nav-height) + 80px) 0 100px;
   background:
-    linear-gradient(to bottom, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.7) 55%, rgba(10, 10, 10, 0.95) 100%),
-    url('../assets/f2d688ed2c250314aaf305486d023aa0.jpg') center/cover no-repeat,
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0.72) 55%, rgba(10, 10, 10, 0.96) 100%),
+    url('../assets/hero-cubes-hd.jpg') center/cover no-repeat,
     #0A0A0A;
   isolation: isolate;
 }
@@ -282,10 +282,11 @@ input, textarea, select { font: inherit; color: inherit; }
   display: block;
 }
 
-/* Rotating word */
+/* Rotating word — brand green (distinct from lime accent), fixed width to prevent layout shift */
 .hero__rotator {
   display: inline-block;
-  height: 1.12em;
+  min-width: 10.5em;
+  height: 1.25em;
   overflow: hidden;
   vertical-align: bottom;
   position: relative;
@@ -293,13 +294,17 @@ input, textarea, select { font: inherit; color: inherit; }
 .hero__rotator-track {
   display: flex;
   flex-direction: column;
-  animation: wordRotate 10s ease-in-out infinite;
+  animation: wordRotate 12s ease-in-out infinite;
 }
 .hero__rotator-track span {
   display: block;
-  height: 1.12em;
-  line-height: 1.12;
-  color: var(--accent);
+  height: 1.25em;
+  line-height: 1.25;
+  color: #2FC08A;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .hero__rotator { min-width: 100%; display: block; height: 1.25em; }
 }
 @keyframes wordRotate {
   0%, 16%   { transform: translateY(0); }
@@ -383,52 +388,81 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* ========================================
-   4. BENTO — POURQUOI NOUS
+   4. SERVICES — 3 PILLARS
    ======================================== */
-.why {
+.services {
   padding: var(--section-gap) 0;
 }
-.bento {
+.pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-.bento__card {
+.pillar {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 40px 32px;
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  padding: 44px 36px 40px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
 }
-.bento__card:hover {
+.pillar:hover {
   transform: translateY(-4px);
   border-color: var(--border-hover);
-  box-shadow: 0 8px 40px rgba(168, 248, 95, 0.05);
+  box-shadow: 0 8px 40px rgba(168, 248, 95, 0.06);
 }
-.bento__card--wide {
-  grid-column: span 2;
+.pillar__num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 20px;
 }
-.bento__icon {
-  display: block;
+.pillar__title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 28px;
-  color: var(--accent);
-  margin-bottom: 20px;
-  line-height: 1;
-}
-.bento__card-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 20px;
-  color: var(--text);
-  margin-bottom: 10px;
+  line-height: 1.15;
   letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 14px;
 }
-.bento__card-desc {
+.pillar__desc {
   font-size: 15px;
   line-height: 1.65;
   color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.pillar__list {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pillar__list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.pillar__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+@media (max-width: 1080px) {
+  .pillars { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
 }
 
 /* ========================================
