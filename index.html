@@ -9,8 +9,8 @@
   <meta property="og:description" content="Professional websites and local SEO on a monthly subscription for neighborhood businesses in Miami.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
-  <link rel="icon" type="image/png" href="assets/palmside-logo-dark.png">
-  <link rel="apple-touch-icon" href="assets/palmside-logo-dark.png">
+  <link rel="icon" type="image/png" href="assets/logo-palmside-mark.png">
+  <link rel="apple-touch-icon" href="assets/logo-palmside-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,8 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a href="#" class="nav__logo" aria-label="Palmside Agency — home">
-        <img src="assets/palmside-logo-trim.png" alt="Palmside Agency" class="nav__logo-img">
+        <img src="assets/logo-palmside-mark.png" alt="" class="nav__logo-mark" aria-hidden="true">
+        <span class="nav__wordmark">PALMSIDE</span>
       </a>
       <nav class="nav__links" aria-label="Main navigation">
         <a href="#process" class="nav__link">How It Works</a>
@@ -96,15 +97,15 @@
             <h3 class="step__title">Discovery call</h3>
             <p class="step__desc">15 minutes to learn about your business, your goals, and your market. Free, no commitment, no pressure.</p>
           </div>
-          <div class="step__visual">
-            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><rect width="200" height="200" rx="24" fill="rgba(168,248,95,0.06)"/><circle cx="100" cy="90" r="30" stroke="#A8F85F" stroke-width="1.5"/><path d="M85 90c0-8.3 6.7-15 15-15s15 6.7 15 15" stroke="#A8F85F" stroke-width="1.5" fill="none"/><rect x="80" y="120" width="40" height="6" rx="3" fill="rgba(168,248,95,0.3)"/><rect x="90" y="132" width="20" height="4" rx="2" fill="rgba(168,248,95,0.15)"/></svg>
-          </div>
+          <figure class="step__visual">
+            <img src="assets/how-it-works-01-discovery.jpg" alt="Team discovery call session" loading="lazy" decoding="async">
+          </figure>
         </div>
 
         <div class="step step--right reveal">
-          <div class="step__visual">
-            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><rect width="200" height="200" rx="24" fill="rgba(168,248,95,0.06)"/><rect x="50" y="50" width="100" height="70" rx="8" stroke="#A8F85F" stroke-width="1.5" fill="none"/><rect x="60" y="60" width="35" height="20" rx="4" fill="rgba(168,248,95,0.2)"/><rect x="60" y="85" width="80" height="4" rx="2" fill="rgba(168,248,95,0.15)"/><rect x="60" y="93" width="60" height="4" rx="2" fill="rgba(168,248,95,0.1)"/><circle cx="100" cy="150" r="12" stroke="#A8F85F" stroke-width="1.5" fill="none"/><path d="M96 150l3 3 5-6" stroke="#A8F85F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <figure class="step__visual">
+            <img src="assets/how-it-works-02-design.jpg" alt="Design work in progress" loading="lazy" decoding="async">
+          </figure>
           <div class="step__content">
             <span class="step__number">02</span>
             <h3 class="step__title">Design & approval</h3>
@@ -118,15 +119,15 @@
             <h3 class="step__title">Launch</h3>
             <p class="step__desc">Your site gets connected to your domain, optimized for Google, and ready to bring in customers — all in 7 days.</p>
           </div>
-          <div class="step__visual">
-            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><rect width="200" height="200" rx="24" fill="rgba(168,248,95,0.06)"/><path d="M100 60l40 50H60l40-50z" stroke="#A8F85F" stroke-width="1.5" fill="rgba(168,248,95,0.1)" stroke-linejoin="round"/><rect x="85" y="110" width="30" height="4" rx="2" fill="rgba(168,248,95,0.3)"/><circle cx="100" cy="140" r="15" stroke="#A8F85F" stroke-width="1.5" fill="none"/><path d="M94 140l4 4 8-8" stroke="#A8F85F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <figure class="step__visual">
+            <img src="assets/how-it-works-03-launch.jpg" alt="Website launch mockup" loading="lazy" decoding="async">
+          </figure>
         </div>
 
         <div class="step step--right reveal">
-          <div class="step__visual">
-            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><rect width="200" height="200" rx="24" fill="rgba(168,248,95,0.06)"/><path d="M50 140 L80 110 L110 125 L140 80 L170 90" stroke="#A8F85F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="140" cy="80" r="4" fill="#A8F85F"/><rect x="50" y="150" width="120" height="3" rx="1.5" fill="rgba(168,248,95,0.1)"/><rect x="50" y="158" width="80" height="3" rx="1.5" fill="rgba(168,248,95,0.08)"/></svg>
-          </div>
+          <figure class="step__visual">
+            <img src="assets/how-it-works-04-growth.jpg" alt="Growth analytics dashboard" loading="lazy" decoding="async">
+          </figure>
           <div class="step__content">
             <span class="step__number">04</span>
             <h3 class="step__title">Ongoing growth</h3>
@@ -221,6 +222,7 @@
 
   <!-- ========== 7. PRICING ========== -->
   <section class="pricing" id="pricing">
+    <span class="pricing__bg-title" aria-hidden="true">Pricing</span>
     <div class="container">
       <span class="section-label reveal">Pricing</span>
       <h2 class="section-title reveal">One simple subscription.<br>No surprises.</h2>
@@ -558,7 +560,8 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a href="#" class="nav__logo footer__logo" aria-label="Palmside Agency — home">
-            <img src="assets/palmside-logo-trim.png" alt="Palmside Agency" class="nav__logo-img nav__logo-img--footer">
+            <img src="assets/logo-palmside-mark.png" alt="" class="nav__logo-mark nav__logo-mark--footer" aria-hidden="true">
+            <span class="nav__wordmark">PALMSIDE</span>
           </a>
           <p class="footer__tagline">Websites & SEO for Miami businesses.</p>
         </div>

@@ -157,33 +157,39 @@ input, textarea, select { font: inherit; color: inherit; }
   margin: 0 auto;
   padding: 0 var(--gutter);
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 .nav__logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  justify-self: start;
 }
-.nav__logo-img {
+.nav__logo-mark {
   display: block;
-  height: 44px;
+  height: 34px;
   width: auto;
   object-fit: contain;
 }
-.nav__logo-img--footer {
-  height: 40px;
+.nav__logo-mark--footer {
+  height: 32px;
 }
-@media (max-width: 768px) {
-  .nav__logo-img { height: 38px; }
-  .nav__logo-img--footer { height: 36px; }
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--text);
+  line-height: 1;
 }
 .nav__links {
   display: flex;
   gap: 32px;
-  margin-left: auto;
+  justify-self: center;
 }
 .nav__link {
   font-size: 14px;
@@ -192,11 +198,11 @@ input, textarea, select { font: inherit; color: inherit; }
   letter-spacing: 0.3px;
   transition: color 0.2s;
 }
-.nav__link:hover { color: var(--text); }
+.nav__link:hover { color: var(--accent); }
 .nav__cta {
   font-size: 14px;
   padding: 10px 24px;
-  margin-left: 24px;
+  justify-self: end;
 }
 
 /* Burger */
@@ -205,7 +211,7 @@ input, textarea, select { font: inherit; color: inherit; }
   flex-direction: column;
   gap: 5px;
   padding: 8px;
-  margin-left: auto;
+  justify-self: end;
 }
 .nav__burger span {
   display: block;
@@ -300,7 +306,7 @@ input, textarea, select { font: inherit; color: inherit; }
   display: block;
   height: 1.25em;
   line-height: 1.25;
-  color: #2FC08A;
+  color: var(--accent);
   white-space: nowrap;
 }
 @media (max-width: 768px) {
@@ -466,46 +472,73 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* ========================================
-   5. PRICING
+   5. PRICING — glassmorphism
    ======================================== */
 .pricing {
   padding: var(--section-gap) 0;
   position: relative;
+  overflow: hidden;
   background:
-    linear-gradient(to bottom, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.55) 45%, rgba(10, 10, 10, 0.95) 100%),
-    url('../assets/45b973b000aea81c705e5a3a30b5abb8.jpg') center/cover no-repeat,
-    radial-gradient(ellipse at 25% 25%, rgba(168, 248, 95, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 80%, rgba(151, 251, 107, 0.11) 0%, transparent 55%),
-    #0A0A0A;
+    radial-gradient(ellipse 90% 60% at 50% 50%, rgba(245, 239, 228, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 30%, rgba(168, 248, 95, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(168, 248, 95, 0.08) 0%, transparent 55%),
+    #0B120E;
   isolation: isolate;
 }
+/* Big cream watermark title behind the cards */
+.pricing__bg-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -46%);
+  z-index: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(9rem, 22vw, 22rem);
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: #F5EFE4;
+  opacity: 0.14;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  filter: blur(2px);
+}
+.pricing .container { position: relative; z-index: 2; }
 .pricing__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
   align-items: start;
 }
 .pricing__card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 44px 32px;
+  position: relative;
+  background: rgba(22, 33, 27, 0.40);
+  backdrop-filter: blur(20px) saturate(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  border: 1px solid rgba(245, 239, 228, 0.10);
+  border-radius: 20px;
+  padding: 44px 32px 40px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s, border-color 0.3s;
-  position: relative;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+              border-color 0.3s, box-shadow 0.3s;
+  isolation: isolate;
 }
 .pricing__card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-hover);
+  border-color: rgba(168, 248, 95, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 .pricing__card--featured {
-  border-color: var(--accent);
-  transform: translateY(-12px);
-  box-shadow: 0 8px 48px rgba(168, 248, 95, 0.08);
+  border-color: rgba(168, 248, 95, 0.45);
+  background: rgba(22, 33, 27, 0.55);
+  transform: translateY(-16px);
+  box-shadow: 0 16px 48px rgba(168, 248, 95, 0.10), 0 4px 16px rgba(0, 0, 0, 0.35);
+  padding: 52px 36px 44px;
 }
 .pricing__card--featured:hover {
-  transform: translateY(-16px);
+  transform: translateY(-20px);
 }
 .pricing__badge {
   position: absolute;
@@ -520,37 +553,54 @@ input, textarea, select { font: inherit; color: inherit; }
   padding: 6px 20px;
   border-radius: var(--radius-pill);
   white-space: nowrap;
+  z-index: 3;
 }
 .pricing__tier {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  margin-bottom: 16px;
+  letter-spacing: 1.5px;
+  color: rgba(245, 239, 228, 0.72);
+  margin-bottom: 20px;
 }
+/* Price wrapper — radial lime glow sits behind the digits */
 .pricing__price {
-  margin-bottom: 8px;
+  position: relative;
+  margin-bottom: 10px;
   line-height: 1;
+  padding: 6px 0;
+}
+.pricing__price::before {
+  content: '';
+  position: absolute;
+  left: -18%;
+  top: 50%;
+  width: 88%;
+  height: 190%;
+  transform: translateY(-50%);
+  background: radial-gradient(ellipse at 30% 50%, rgba(168, 248, 95, 0.30) 0%, transparent 65%);
+  filter: blur(18px);
+  z-index: -1;
+  pointer-events: none;
 }
 .pricing__amount {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 56px;
-  color: var(--text);
+  font-size: 62px;
+  color: #F5EFE4;
   letter-spacing: -0.03em;
 }
 .pricing__currency {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 18px;
-  color: var(--text-muted);
-  margin-left: 2px;
+  color: rgba(245, 239, 228, 0.62);
+  margin-left: 4px;
 }
 .pricing__tagline {
   font-size: 14px;
-  color: var(--text-dim);
+  color: rgba(245, 239, 228, 0.55);
   margin-bottom: 32px;
 }
 .pricing__features {
@@ -559,20 +609,24 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 .pricing__features li {
   position: relative;
-  padding: 10px 0 10px 28px;
+  padding: 12px 0 12px 30px;
   font-size: 14px;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
+  color: rgba(245, 239, 228, 0.85);
+  border-bottom: 1px solid rgba(245, 239, 228, 0.08);
 }
+/* Real checkmark — CSS-drawn tick in brand green */
 .pricing__features li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 16px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
+  left: 4px;
+  top: 15px;
+  width: 6px;
+  height: 11px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg);
+  border-radius: 1px;
+  background: none;
 }
 
 /* ========================================
@@ -715,15 +769,34 @@ input, textarea, select { font: inherit; color: inherit; }
   color: var(--text-muted);
 }
 .step__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.step__visual svg {
+  position: relative;
   width: 100%;
-  max-width: 240px;
-  height: auto;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0B120E;
 }
+.step__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.72) contrast(1.05) brightness(0.92);
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s;
+}
+.step__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(168, 248, 95, 0.10) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(11, 18, 14, 0.15) 0%, rgba(11, 18, 14, 0.55) 100%);
+  pointer-events: none;
+}
+.step__visual:hover img { transform: scale(1.03); filter: grayscale(0.5) contrast(1.05) brightness(0.98); }
 
 /* ========================================
    7. STATISTIQUES
@@ -1199,9 +1272,16 @@ input, textarea, select { font: inherit; color: inherit; }
     --nav-height: 64px;
     --section-gap: 96px;
   }
+  .nav__inner {
+    display: flex;
+    justify-content: space-between;
+  }
   .nav__links,
   .nav__cta { display: none; }
   .nav__burger { display: flex; }
+  .nav__logo-mark { height: 30px; }
+  .nav__logo-mark--footer { height: 28px; }
+  .nav__wordmark { font-size: 18px; letter-spacing: 2px; }
 
   .hero {
     padding-top: calc(var(--nav-height) + 48px);
@@ -1247,7 +1327,7 @@ input, textarea, select { font: inherit; color: inherit; }
   .step--right .step__visual { order: 2; }
   .step--right .step__content { order: 1; }
   .step__content { padding: 0; }
-  .step__visual svg { max-width: 180px; }
+  .step__visual { max-width: 260px; }
 
   .stats__grid {
     grid-template-columns: 1fr;
