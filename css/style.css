@@ -488,7 +488,7 @@ input, textarea, select { font: inherit; color: inherit; }
 /* Big cream watermark title behind the cards */
 .pricing__bg-title {
   position: absolute;
-  top: 22%;
+  top: 36%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
@@ -498,11 +498,10 @@ input, textarea, select { font: inherit; color: inherit; }
   letter-spacing: -0.06em;
   line-height: 0.9;
   color: #F5EFE4;
-  opacity: 0.28;
+  opacity: 0.38;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  filter: blur(1px);
 }
 .pricing .container { position: relative; z-index: 2; }
 .pricing__grid {
