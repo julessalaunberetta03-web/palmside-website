@@ -71,6 +71,7 @@
       var parent = el.parentElement;
       if (parent && (
         parent.classList.contains('bento') ||
+        parent.classList.contains('pillars') ||
         parent.classList.contains('pricing__grid') ||
         parent.classList.contains('stats__grid')
       )) {
