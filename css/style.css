@@ -256,7 +256,7 @@ input, textarea, select { font: inherit; color: inherit; }
   padding: calc(var(--nav-height) + 80px) 0 100px;
   background:
     linear-gradient(to bottom, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0.72) 55%, rgba(10, 10, 10, 0.96) 100%),
-    url('../assets/hero-cubes-hd.jpg') center/cover no-repeat,
+    url('../assets/hero-bg-palmside.jpg') right center/cover no-repeat,
     #0A0A0A;
   isolation: isolate;
 }
