@@ -1257,6 +1257,43 @@ input, textarea, select { font: inherit; color: inherit; }
   border-color: var(--accent);
 }
 .form-textarea { resize: vertical; min-height: 100px; }
+.form-error {
+  font-size: 13px;
+  color: #FF6B6B;
+  margin: -8px 0 16px;
+  line-height: 1.5;
+}
+
+/* Inline success state — replaces the form on successful AJAX submit */
+.contact__success {
+  background: var(--card-bg);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius);
+  padding: 56px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.contact__success svg {
+  color: var(--accent);
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(168, 248, 95, 0.1);
+}
+.contact__success-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text);
+}
+.contact__success-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 320px;
+  line-height: 1.6;
+}
 
 /* ========================================
    12. FOOTER

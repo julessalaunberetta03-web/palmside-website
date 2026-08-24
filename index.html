@@ -568,9 +568,9 @@
           <h2 class="contact__title">Ready to get<br>more customers?</h2>
           <p class="contact__desc">Book a free 15-minute discovery call. We'll review your online presence and tell you exactly what to improve.</p>
           <div class="contact__links">
-            <a href="mailto:hello@palmside-agency.com" class="contact__link">
+            <a href="mailto:contact@palmsideagency.com" class="contact__link">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-              hello@palmside-agency.com
+              contact@palmsideagency.com
             </a>
             <a href="https://instagram.com/palmside.agency" target="_blank" rel="noopener noreferrer" class="contact__link">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -583,7 +583,7 @@
           </div>
         </div>
         <div class="contact__form-wrap reveal">
-          <form class="contact__form" action="https://formspree.io/f/xbgrvgvd" method="POST">
+          <form class="contact__form" id="contact-form" action="https://formspree.io/f/xbgrvgvd" method="POST">
             <div class="form-group">
               <label for="name" class="form-label">Name</label>
               <input type="text" id="name" name="name" class="form-input" required autocomplete="name" placeholder="Your name">
@@ -596,8 +596,14 @@
               <label for="message" class="form-label">Message</label>
               <textarea id="message" name="message" class="form-input form-textarea" rows="4" placeholder="Tell us about your business..."></textarea>
             </div>
+            <p class="form-error" id="contact-form-error" role="alert" hidden>Something went wrong. Please try again or email us directly.</p>
             <button type="submit" class="btn btn--primary btn--full">Send message</button>
           </form>
+          <div class="contact__success" id="contact-success" hidden role="status">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3 class="contact__success-title">Message sent.</h3>
+            <p class="contact__success-desc">Thanks for reaching out &mdash; we'll get back to you within 24 hours.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -635,7 +641,7 @@
         </div>
         <div class="footer__col">
           <h4 class="footer__col-title">Contact</h4>
-          <a href="mailto:hello@palmside-agency.com" class="footer__link">hello@palmside-agency.com</a>
+          <a href="mailto:contact@palmsideagency.com" class="footer__link">contact@palmsideagency.com</a>
           <a href="#contact" class="footer__link">Book a call</a>
           <span class="footer__link footer__link--static">Miami, FL</span>
         </div>

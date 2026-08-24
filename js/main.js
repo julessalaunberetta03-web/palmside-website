@@ -151,4 +151,41 @@
     sections.forEach(function (section) { sectionObserver.observe(section); });
   }
 
+  // --- CONTACT FORM (AJAX to Formspree, inline success state) ---
+  var contactForm = document.getElementById('contact-form');
+  var contactSuccess = document.getElementById('contact-success');
+  var contactError = document.getElementById('contact-form-error');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      contactError.hidden = true;
+
+      var submitBtn = contactForm.querySelector('button[type="submit"]');
+      var originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            contactForm.hidden = true;
+            contactSuccess.hidden = false;
+            contactForm.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        })
+        .catch(function () {
+          contactError.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        });
+    });
+  }
+
 })();
