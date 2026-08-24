@@ -315,27 +315,8 @@ input, textarea, select { font: inherit; color: inherit; }
   color: var(--accent);
   white-space: nowrap;
 }
-/* Blinking typing cursor after the rotator */
-.hero__cursor {
-  display: inline-block;
-  width: 0.08em;
-  height: 0.85em;
-  vertical-align: -0.05em;
-  margin-left: 0.08em;
-  background: var(--accent);
-  border-radius: 1px;
-  animation: cursorBlink 1s steps(2, jump-none) infinite;
-  transform: translateY(0.02em);
-}
-@keyframes cursorBlink {
-  50% { opacity: 0; }
-}
 @media (max-width: 768px) {
   .hero__rotator { min-width: 7em; height: 1.25em; }
-  .hero__cursor { height: 0.75em; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero__cursor { animation: none; opacity: 1; }
 }
 @keyframes wordRotate {
   0%, 16%   { transform: translateY(0); }
@@ -1265,6 +1246,7 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* Inline success state — replaces the form on successful AJAX submit */
+.contact__success[hidden] { display: none; }
 .contact__success {
   background: var(--card-bg);
   border: 1px solid var(--border-hover);
