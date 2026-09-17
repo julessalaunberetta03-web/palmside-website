@@ -169,14 +169,15 @@ input, textarea, select { font: inherit; color: inherit; }
   flex-shrink: 0;
   justify-self: start;
 }
-.nav__logo-mark {
+/* Full lockup — the wordmark lives inside the image, so no text sibling */
+.nav__logo-img {
   display: block;
-  height: 34px;
+  height: 42px;
   width: auto;
   object-fit: contain;
 }
-.nav__logo-mark--footer {
-  height: 32px;
+.nav__logo-img--footer {
+  height: 46px;
 }
 .nav__wordmark {
   font-family: var(--font-display);
@@ -1684,8 +1685,8 @@ input, textarea, select { font: inherit; color: inherit; }
   .nav__links,
   .nav__cta { display: none; }
   .nav__burger { display: flex; }
-  .nav__logo-mark { height: 30px; }
-  .nav__logo-mark--footer { height: 28px; }
+  .nav__logo-img { height: 34px; }
+  .nav__logo-img--footer { height: 38px; }
   .nav__wordmark { font-size: 18px; letter-spacing: 2px; }
 
   .hero {
