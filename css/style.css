@@ -1855,3 +1855,76 @@ details summary:focus-visible {
   .founding__spots-num { font-size: 48px; }
   .founding__terms li { font-size: 12.5px; padding: 6px 12px; }
 }
+
+/* The carousel is a mobile affordance only */
+.pricing__dots { display: none; }
+
+/* --- PRICING CAROUSEL (mobile) ---
+   Four stacked cards made the section a long tunnel on a phone. Below 768px
+   the grid becomes a swipeable scroll-snap track, same mechanic as the
+   testimonials rail. Cards sit at 82% so the next one peeks at the edge and
+   the swipe affordance reads without instructions. */
+@media (max-width: 768px) {
+  .pricing__grid--4 {
+    display: flex;
+    grid-template-columns: none;
+    align-items: stretch;
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Bleed past the container so a card can sit flush to the screen edge */
+    margin-left: calc(var(--gutter) * -1);
+    margin-right: calc(var(--gutter) * -1);
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    padding-top: 26px;    /* headroom for the "Most popular" badge */
+    padding-bottom: 10px;
+  }
+  .pricing__grid--4::-webkit-scrollbar { display: none; }
+
+  .pricing__grid--4 > .pricing__card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    margin: 0;
+  }
+  /* Level the featured card with the rest — the lift and the extra padding
+     only make sense when the cards sit side by side in a row. */
+  .pricing__grid--4 .pricing__card--featured,
+  .pricing__grid--4 .pricing__card--featured:hover {
+    transform: none;
+    padding: 32px 24px;
+  }
+
+  /* Pagination dots — injected by main.js, absent when JS is off */
+  .pricing__dots {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 18px;
+  }
+  .pricing__dots-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(245, 239, 228, 0.22);
+    transition: background 0.25s, transform 0.25s, width 0.25s;
+  }
+  .pricing__dots-dot[aria-current="true"] {
+    width: 22px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+  /* Comfortable tap target without inflating the visual dot */
+  .pricing__dots-dot::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+  }
+  .pricing__dots-dot { position: relative; }
+}
