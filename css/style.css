@@ -265,7 +265,9 @@ input, textarea, select { font: inherit; color: inherit; }
   position: relative;
   font-family: 'Archivo', 'Archivo Narrow', system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(3rem, 8vw, 6rem);
+  /* Desktop cap kept at 4.5rem — the 8vw term still governs below ~900px,
+     so tablet and mobile sizes are untouched. */
+  font-size: clamp(3rem, 8vw, 4.5rem);
   line-height: 1.05;
   letter-spacing: -0.035em;
   color: var(--text);
