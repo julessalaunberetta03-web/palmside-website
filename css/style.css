@@ -1929,3 +1929,156 @@ details summary:focus-visible {
   }
   .pricing__dots-dot { position: relative; }
 }
+
+/* ========================================
+   LEGAL PAGES (/terms, /refund-policy, /privacy)
+   Plain document layout on the standard dark canvas.
+   ======================================== */
+.legal {
+  padding: calc(var(--nav-height) + 88px) 0 40px;
+}
+.legal__header {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.legal__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.legal__updated {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.legal__rule {
+  max-width: 760px;
+  height: 1px;
+  background: var(--border);
+  margin: 40px auto 0;
+}
+
+/* --- DOCUMENT BODY --- */
+.legal__doc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 0 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+.legal__intro {
+  font-size: 17px;
+  color: var(--text);
+}
+.legal__doc > * + * {
+  margin-top: 18px;
+}
+.legal__doc h2 {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 52px;
+  margin-bottom: 0;
+}
+.legal__doc h2 + * {
+  margin-top: 14px;
+}
+.legal__doc h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-top: 28px;
+}
+.legal__doc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.legal__doc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.legal__doc a:hover {
+  color: var(--text);
+}
+.legal__doc ul {
+  list-style: none;
+  padding-left: 0;
+}
+.legal__doc ul li {
+  position: relative;
+  padding-left: 22px;
+}
+.legal__doc ul li + li {
+  margin-top: 10px;
+}
+.legal__doc ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.75;
+}
+
+/* Signature / contact block at the foot of each document */
+.legal__signoff {
+  margin-top: 20px;
+  padding: 22px 26px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--text-muted);
+}
+.legal__signoff strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Cross-links to the other two documents */
+.legal__also {
+  max-width: 760px;
+  margin: 64px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.legal__also a {
+  color: var(--text-muted);
+}
+.legal__also a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .legal {
+    padding-top: calc(var(--nav-height) + 56px);
+  }
+  .legal__doc {
+    font-size: 15.5px;
+  }
+  .legal__doc h2 {
+    margin-top: 44px;
+  }
+  .legal__signoff {
+    padding: 20px;
+  }
+}
