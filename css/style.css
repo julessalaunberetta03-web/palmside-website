@@ -553,6 +553,14 @@ input, textarea, select { font: inherit; color: inherit; }
   border-radius: 50%;
   background: var(--accent);
 }
+.pillar__desc:last-child { margin-bottom: 0; }
+.services__note {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
 @media (max-width: 1080px) {
   .pillars { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
 }
